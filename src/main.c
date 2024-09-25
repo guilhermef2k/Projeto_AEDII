@@ -32,31 +32,31 @@ int main() {
                                 case 1:
                                     printf("\nInforme o codigo, nome, preco, categoria do produto e quantidade em estoque.\n");
                                     scanf("%d %s %f %s %d", &A.codigo, A.nome, &A.preco, A.categoria, &A.estoque);
-                                    //Chamada da fun��o de cadastrar produtos
+                                    //Chamada da função de cadastrar produtos
                                     break;
                                 case 2:
                                     printf("\nInforme o codigo do produto que deseja alterar:");
                                     scanf("%d", &cod);
-                                    //Chamada da fun��o de editar produtos
+                                    //Chamada da função de editar produtos
                                     break;
                                 case 3:
-                                    //Chamada da fun��o que lista os produtos
+                                    //Chamada da função que lista os produtos
                                     break;
                                 case 4:         
                                     printf("\nInforme o codigo do produto que deseja buscar:");
                                     scanf("%d", &cod);
-                                    //Chamada da fun��o que busca o produto
+                                    //Chamada da função que busca o produto
                                     break;
                                 case 5:
                                     printf("\nInforme o codigo do produto que deseja excluir:");
                                     scanf("%d", &cod);
-                                    //Chamada da fun��o que exclui produtos
+                                    //Chamada da função que exclui produtos
                                     break;
                                 case 6:
-                                    // Implementar ordena��o dos produtos
+                                    // Implementar ordenação dos produtos
                                     break;
                                 case 7:
-                                    // Implementar exclus�o de usu�rio
+                                    // Implementar exclusão de usuário
                                     break;
                                 case 8:
                                     printf("Logout realizado com sucesso.\n");
@@ -83,15 +83,15 @@ int main() {
                 break;
 
             case 2:
-                // Implementar cadastro de novo usu�rio
+                // Implementar cadastro de novo usuário
                 break;
             case 3:
-                // Mostrar a �rvore de produtos
+                // Mostrar a árvore de produtos
                 break;
             case 4:
                 printf("\nInforme o codigo do produto que deseja buscar:");
                 scanf("%d", &cod);
-               //Chamada da fun��o de buscar produtos
+               //Chamada da função de buscar produtos
                 break;
             case 5:
                 // Implementar mostrar por categoria
