@@ -9,8 +9,6 @@ int main() {
     char user[50];
     int senha;
 
-    //logo();
-
     do {
         MenuPrincipal();
         scanf("%d", &opcao);
@@ -25,7 +23,7 @@ int main() {
 
                     if ((strcmp(user, "a") == 0) && (senha == 123)) {
                         printf("\nLogin bem-sucedido!\n");
-                        tentativas = 0;  // Resetar tentativas apÛs login bem-sucedido
+                        tentativas = 0; 
 
                         do {
                             MenuUsuario();
@@ -34,31 +32,31 @@ int main() {
                                 case 1:
                                     printf("\nInforme o codigo, nome, preco, categoria do produto e quantidade em estoque.\n");
                                     scanf("%d %s %f %s %d", &A.codigo, A.nome, &A.preco, A.categoria, &A.estoque);
-                                    //Chamada da funÁ„o de cadastrar produtos
+                                    //Chamada da fun√ß√£o de cadastrar produtos
                                     break;
                                 case 2:
                                     printf("\nInforme o codigo do produto que deseja alterar:");
                                     scanf("%d", &cod);
-                                    //Chamada da funÁ„o de editar produtos
+                                    //Chamada da fun√ß√£o de editar produtos
                                     break;
                                 case 3:
-                                    //Chamada da funÁ„o que mostra a ·rvore de produtos
+                                    //Chamada da fun√ß√£o que lista os produtos
                                     break;
                                 case 4:         
                                     printf("\nInforme o codigo do produto que deseja buscar:");
                                     scanf("%d", &cod);
-                                    //Chamada da funÁ„o que busca o produto
+                                    //Chamada da fun√ß√£o que busca o produto
                                     break;
                                 case 5:
                                     printf("\nInforme o codigo do produto que deseja excluir:");
                                     scanf("%d", &cod);
-                                    //Chamada da funÁ„o que exclui produtos
+                                    //Chamada da fun√ß√£o que exclui produtos
                                     break;
                                 case 6:
-                                    // Implementar ordenaÁ„o dos produtos
+                                    // Implementar ordena√ß√£o dos produtos
                                     break;
                                 case 7:
-                                    // Implementar exclus„o de usu·rio
+                                    // Implementar exclus√£o de usu√°rio
                                     break;
                                 case 8:
                                     printf("Logout realizado com sucesso.\n");
@@ -80,20 +78,20 @@ int main() {
 
                 if (tentativas == maxTentativas) {
                     printf("Numero maximo de tentativas atingido. Encerrando programa...\n");
-                    return 0;  // Encerra o programa apÛs 3 tentativas falhadas
+                    return 0;  
                 }
                 break;
 
             case 2:
-                // Implementar cadastro de novo usu·rio
+                // Implementar cadastro de novo usu√°rio
                 break;
             case 3:
-                // Mostrar a ·rvore de produtos
+                // Mostrar a √°rvore de produtos
                 break;
             case 4:
                 printf("\nInforme o codigo do produto que deseja buscar:");
                 scanf("%d", &cod);
-               //Chamada da funÁ„o de buscar produtos
+               //Chamada da fun√ß√£o de buscar produtos
                 break;
             case 5:
                 // Implementar mostrar por categoria
