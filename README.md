@@ -39,12 +39,12 @@ Ponteiro sem ponta é o nome dado ao projeto que visa a criação, em linguagem 
 <!--ts-->
 *	[Introdução](#introdução) 
 *	[Tabela de Conteúdo](#tabela-de-conteúdos) 
-*	[Funcionalidades](#funcionalidades) 
+*	[Funcionalidades](#-funcionalidades) 
 *	[Execução](#execução) 
-	*	[Pré-requisitos](#pré-requisitos) 
-	*	[Instalação](#instalação) 
-	*	[Compilação e execução](#compilação-e-execução) 
-*	[Colaboradores](#colaboradores) 
+	*	[Pré-requisitos](#-pré-requisitos) 
+	*	[Instalação](#-instalação) 
+	*	[Compilação e execução](#%EF%B8%8F-compilação-e-execução) 
+*	[Colaboradores](#-colaboradores) 
 <!--te-->
 
 ### ✨ Funcionalidades
