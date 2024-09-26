@@ -26,6 +26,7 @@ int fatorBalanceamento(NO *n);
 NO* inicializar();
 NO* rotacaoDireita(NO *y);
 NO* rotacaoEsquerda(NO *x);
+NO* cadastrarProduto(NO* no, Produto dado);
 NO* novoNoAVL(Produto dado);
 NO* carregarProdutos(FILE *arquivo);
 #endif

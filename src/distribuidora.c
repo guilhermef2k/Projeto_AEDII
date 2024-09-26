@@ -77,13 +77,52 @@ NO* rotacaoEsquerda(NO *x) {
 NO* novoNoAVL(Produto dado) {
     NO* novo = (NO*)malloc(sizeof(NO));
     if (novo == NULL) {
-        printf("Erro ao alocar mem�ria!\n");
+        printf("Erro ao alocar memória!\n");
         return NULL;
     }
     novo->dado = dado;
     novo->esq = novo->dir = NULL;
     novo->altura = 1;  
     return novo;
+}
+
+NO* cadastrarProduto(NO* no, Produto dado) {
+    FILE *arquivo = fopen("produtos.txt", "w");
+    int balanceamento;
+    if (no == NULL)
+        return novoNoAVL(dado);
+
+    if (dado.codigo < no->dado.codigo)
+        no->esq = cadastrarProduto(no->esq, dado);
+    else if (dado.codigo > no->dado.codigo)
+        no->dir = cadastrarProduto(no->dir, dado);
+    else  
+        return no;
+
+    no->altura = 1 + max(altura(no->esq), altura(no->dir));
+    balanceamento = fatorBalanceamento(no);
+
+    if (balanceamento > 1 && dado.codigo < no->esq->dado.codigo)
+        return rotacaoDireita(no);
+    if (balanceamento < -1 && dado.codigo > no->dir->dado.codigo)
+        return rotacaoEsquerda(no);
+    if (balanceamento > 1 && dado.codigo > no->esq->dado.codigo) {
+        no->esq = rotacaoEsquerda(no->esq);
+        return rotacaoDireita(no);
+    }
+    if (balanceamento < -1 && dado.codigo < no->dir->dado.codigo) {
+        no->dir = rotacaoDireita(no->dir);
+        return rotacaoEsquerda(no);
+    }
+    if (arquivo != NULL) {
+	    salvarProduto(arquivo, no);
+	    fclose(arquivo);
+	    printf("Produto cadastrado e salvo com sucesso.\n");
+	  } else {
+	    printf("Erro ao salvar produto no arquivo.\n");
+	  }
+
+    return no;  
 }
 
 void salvarProduto(FILE *arquivo, NO *no) {
@@ -100,6 +139,7 @@ void salvarProduto(FILE *arquivo, NO *no) {
 
 NO* carregarProdutos(FILE *arquivo) {
     Produto dado;
+    NO *no = novoNoAVL(dado); 
     char buffer[100];
 
     if (!fgets(buffer, sizeof(buffer), arquivo)) {
@@ -111,8 +151,6 @@ NO* carregarProdutos(FILE *arquivo) {
     }
 
     sscanf(buffer, "%d %s %d %f %s", &dado.codigo, dado.nome, &dado.estoque, &dado.preco, dado.categoria);
-
-    NO *no = novoNoAVL(dado); 
 
     no->esq = carregarProdutos(arquivo);
     no->dir = carregarProdutos(arquivo);
