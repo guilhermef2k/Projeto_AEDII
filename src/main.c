@@ -45,7 +45,7 @@ int main() {
                                     editarProduto(raiz, cod); 
                                     break;                                 
                                 case 3:
-                                    
+                                    mostrarProdutos(raiz, 0);
                                     break;
                                 case 4:         
                                     printf("\nInforme o codigo do produto que deseja buscar:");
@@ -88,10 +88,10 @@ int main() {
                 break;
 
             case 2:
-               
+
                 break;
             case 3:
-                
+                mostrarProdutos(raiz, 0);
                 break;
             case 4:
                 printf("\nInforme o codigo do produto que deseja buscar:");

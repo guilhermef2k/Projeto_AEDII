@@ -21,6 +21,7 @@ void MenuPrincipal();
 void MenuUsuario();
 void salvarProduto(FILE *arquivo, NO *no);
 void editarProduto(NO *raiz, int codigo);
+void mostrarProdutos(NO *raiz, int nivel);
 int altura(NO *n);
 int max(int a, int b);
 int fatorBalanceamento(NO *n);
