@@ -3,9 +3,10 @@
 #include "distribuidora.h"
 
 int main() {
-    int opcao, opcaoUsuario, cod, tentativas = 0, maxTentativas = 3;
+    int opcao, opcaoUsuario, confirmarExclusao, cod, tentativas = 0, maxTentativas = 3;
     NO *raiz = inicializar();
     NO* produto;
+    NO* produtoExcluir;
     Produto A;
     char user[50];
     int senha;
@@ -62,7 +63,21 @@ int main() {
                                 case 5:
                                     printf("\nInforme o codigo do produto que deseja excluir:");
                                     scanf("%d", &cod);
-                                    
+                                    produtoExcluir = buscarProduto(raiz, cod);
+								    if (produtoExcluir) {
+								        printf("Produto encontrado: %d (%s, Estoque: %d, Preco: %.2f)\n",
+								               produtoExcluir->dado.codigo, produtoExcluir->dado.nome,
+								               produtoExcluir->dado.estoque, produtoExcluir->dado.preco);
+								        
+								        printf("Tem certeza que deseja excluir este produto? (1-Sim, 0-Nao)\n");
+								        scanf("%d", &confirmarExclusao);								
+								        if (confirmarExclusao == 1) 
+								            raiz = removerProduto(raiz, cod);								            
+								        else 
+								            printf("Exclusao cancelada.\n");								        
+								    } else {
+								        printf("Produto nao encontrado.\n");
+								    }
                                     break;
                                 case 6:
                                     
