@@ -53,15 +53,15 @@ Básicas:
 
 - [x] Login 
 - [ ] Cadastrar novo usuário 
-- [ ] Consultar estoque
-- [ ] Buscar produtos
+- [x] Consultar estoque
+- [x] Buscar produtos
 - [ ] Mostrar produtos por categoria
 
 Após cadastro e login:
 
-- [ ] Cadastrar novo produto
-- [ ] Editar produto
-- [ ] Excluir produto
+- [x] Cadastrar novo produto
+- [x] Editar produto
+- [x] Excluir produto
 - [ ] Excluir usuário
 - [ ] Ordenar produtos por código
 
