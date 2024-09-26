@@ -9,8 +9,23 @@ typedef struct {
     int estoque;
 } Produto;
 
+typedef struct NO {
+    Produto dado;
+    struct NO* esq;
+    struct NO* dir;
+    int altura;
+} NO;
+
 void logo();
 void MenuPrincipal();
 void MenuUsuario();
-
+void salvarProduto(FILE *arquivo, NO *no);
+int altura(NO *n);
+int max(int a, int b);
+int fatorBalanceamento(NO *n);
+NO* inicializar();
+NO* rotacaoDireita(NO *y);
+NO* rotacaoEsquerda(NO *x);
+NO* novoNoAVL(Produto dado);
+NO* carregarProdutos(FILE *arquivo);
 #endif

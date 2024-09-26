@@ -4,7 +4,12 @@
 
 int main() {
     int opcao, opcaoUsuario, cod, tentativas = 0, maxTentativas = 3;
-    
+    NO *raiz = inicializar();  // Inicializar �rvore vazia
+    FILE *arquivo = fopen("arvore_avl.txt", "r+");  // Abrir arquivo para leitura e escrita
+	if (arquivo != NULL) {
+    	raiz = carregarProdutos(arquivo);  // Carregar produtos do arquivo
+    	fclose(arquivo);
+	}
     Produto A;
     char user[50];
     int senha;
