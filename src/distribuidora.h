@@ -32,4 +32,5 @@ NO* cadastrarProduto(NO* no, Produto dado);
 NO* novoNoAVL(Produto dado);
 NO* carregarProdutos(FILE *arquivo);
 NO* buscarProduto(NO* raiz, int codigo);
+NO* removerProduto(NO* raiz, int codigo);
 #endif

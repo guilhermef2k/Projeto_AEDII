@@ -48,6 +48,13 @@ NO *inicializar() {
     return NULL;
 }
 
+NO* minimoValorNo(NO* node) {
+    NO* atual = node;
+    while (atual->esq != NULL)
+        atual = atual->esq;
+    return atual;
+}
+
 NO* rotacaoDireita(NO *y) {
     NO *x = y->esq;
     NO *T2 = x->dir;
@@ -224,6 +231,73 @@ void editarProduto(NO *raiz, int codigo) {
 	    printf("Erro ao salvar alteracoes no arquivo.\n");
 	}
 }
+
+NO* removerProduto(NO* raiz, int codigo) {
+    int balance;
+    NO* temp;
+    FILE *arquivo = fopen("produtos.txt", "w");
+    if (raiz == NULL) {
+        printf("Produto nao encontrado.\n");
+        return raiz;
+    }
+    if (codigo < raiz->dado.codigo) {
+        raiz->esq = removerProduto(raiz->esq, codigo);
+    } else if (codigo > raiz->dado.codigo) {
+        raiz->dir = removerProduto(raiz->dir, codigo);
+    } else {
+        if (raiz->esq == NULL) {
+            NO* temp = raiz->dir;
+            free(raiz);
+            return temp;
+        } else if (raiz->dir == NULL) {
+            NO* temp = raiz->esq;
+            free(raiz);
+            return temp;
+        }     
+        temp = minimoValorNo(raiz->dir);
+        raiz->dado = temp->dado;
+        raiz->dir = removerProduto(raiz->dir, temp->dado.codigo);
+    }
+
+    if (raiz == NULL)
+        return raiz;
+
+    
+    raiz->altura = 1 + max(altura(raiz->esq), altura(raiz->dir));
+
+   
+    balance = fatorBalanceamento(raiz);
+
+    if (balance > 1 && fatorBalanceamento(raiz->esq) >= 0) {
+        return rotacaoDireita(raiz);
+    }
+
+    if (balance > 1 && fatorBalanceamento(raiz->esq) < 0) {
+        raiz->esq = rotacaoEsquerda(raiz->esq);
+        return rotacaoDireita(raiz);
+    }
+
+    if (balance < -1 && fatorBalanceamento(raiz->dir) <= 0) {
+        return rotacaoEsquerda(raiz);
+    }
+
+    if (balance < -1 && fatorBalanceamento(raiz->dir) > 0) {
+        raiz->dir = rotacaoDireita(raiz->dir);
+        return rotacaoEsquerda(raiz);
+    }
+    
+	raiz = removerProduto(raiz, codigo);
+	if (arquivo != NULL) {
+	    salvarProduto(arquivo, raiz);
+	    fclose(arquivo);
+	    printf("Produto removido e alteraçõees salvas com sucesso.\n");
+	} else {
+	    printf("Erro ao salvar alterações no arquivo.\n");
+	}
+
+    return raiz;
+}
+
 void mostrarProdutos(NO *raiz, int nivel) {
     int i;
     if (raiz == NULL) {
