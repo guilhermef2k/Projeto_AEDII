@@ -4,7 +4,8 @@
 
 int main() {
     int opcao, opcaoUsuario, cod, tentativas = 0, maxTentativas = 3;
-    NO *raiz = inicializar();  
+    NO *raiz = inicializar();
+    NO* produto;
     Produto A;
     char user[50];
     int senha;
@@ -50,7 +51,13 @@ int main() {
                                 case 4:         
                                     printf("\nInforme o codigo do produto que deseja buscar:");
                                     scanf("%d", &cod);
-                                    
+                                    produto = buscarProduto(raiz, cod);
+                                    if (produto) {
+                                        printf("Produto encontrado: %d (%s, Estoque: %d, Preco: %.2f)\n", 
+                                               produto->dado.codigo, produto->dado.nome, produto->dado.estoque, produto->dado.preco);
+                                    } else {
+                                        printf("Produto não encontrado.\n");
+                                    }
                                     break;
                                 case 5:
                                     printf("\nInforme o codigo do produto que deseja excluir:");
@@ -96,7 +103,13 @@ int main() {
             case 4:
                 printf("\nInforme o codigo do produto que deseja buscar:");
                 scanf("%d", &cod);
-              
+                produto = buscarProduto(raiz, cod);
+                if (produto) {
+                    printf("Produto encontrado: %d (%s, Estoque: %d, Preco: %.2f)\n", 
+                            produto->dado.codigo, produto->dado.nome, produto->dado.estoque, produto->dado.preco);
+                } else {
+                    printf("Produto não encontrado.\n");
+                }
                 break;
             case 5:
                
