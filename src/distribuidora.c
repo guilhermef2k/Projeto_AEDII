@@ -20,9 +20,9 @@ void MenuUsuario(){
   printf("1. Cadastrar novo produto\n");
   printf("2. Editar produto\n");
   printf("3. Listar produtos\n");
-	printf("4. Buscar produto\n");
-	printf("5. Excluir produto\n");
-	printf("6. Ordenar produtos por codigo\n");
+  printf("4. Buscar produto\n");
+  printf("5. Excluir produto\n");
+  printf("6. Ordenar produtos por codigo\n");
   printf("7. Excluir usuario\n");
   printf("8. Logout\n");
   printf("0. Sair\n");
@@ -223,4 +223,18 @@ void editarProduto(NO *raiz, int codigo) {
 	} else {
 	    printf("Erro ao salvar alteracoes no arquivo.\n");
 	}
+}
+void mostrarProdutos(NO *raiz, int nivel) {
+    int i;
+    if (raiz == NULL) {
+        return;
+    }
+
+    mostrarProdutos(raiz->dir, nivel + 1);
+    for (i = 0; i < nivel; i++) {
+        printf("\t");
+    }
+    printf("%d (%s, Estoque: %d, Preco: %.2f)\n", raiz->dado.codigo, raiz->dado.nome, raiz->dado.estoque, raiz->dado.preco);
+
+    mostrarProdutos(raiz->esq, nivel + 1);
 }
