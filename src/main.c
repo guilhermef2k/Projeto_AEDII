@@ -38,18 +38,12 @@ int main() {
                                     printf("\nInforme o codigo, nome, preco, categoria do produto e quantidade em estoque.\n");
                                     scanf("%d %s %f %s %d", &A.codigo, A.nome, &A.preco, A.categoria, &A.estoque);
                                     raiz = cadastrarProduto(raiz, A);
-                                    if (arquivo != NULL) {    
-                                        salvarProduto(arquivo, raiz);  
-                                        printf("Produto cadastrado com sucesso.\n");
-                                    } else {
-                                        printf("Erro ao cadastrar produto.\n");
-                                    }
                                     break;
                                 case 2:
                                     printf("\nInforme o codigo do produto que deseja alterar:");
                                     scanf("%d", &cod);
-                                  
-                                    break;
+                                    editarProduto(raiz, cod); 
+                                    break;                                 
                                 case 3:
                                     
                                     break;

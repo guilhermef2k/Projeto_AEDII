@@ -117,9 +117,9 @@ NO* cadastrarProduto(NO* no, Produto dado) {
     if (arquivo != NULL) {
 	    salvarProduto(arquivo, no);
 	    fclose(arquivo);
-	    printf("Produto cadastrado e salvo com sucesso.\n");
+	    printf("Produto cadastrado com sucesso.\n");
 	  } else {
-	    printf("Erro ao salvar produto no arquivo.\n");
+	    printf("Erro ao cadastrar produto.\n");
 	  }
 
     return no;  
@@ -158,4 +158,69 @@ NO* carregarProdutos(FILE *arquivo) {
     no->altura = 1 + max(altura(no->esq), altura(no->dir));
 
     return no;
+}
+NO* buscarProduto(NO* raiz, int codigo) {
+    if (raiz == NULL || raiz->dado.codigo == codigo)
+        return raiz;
+
+    if (codigo < raiz->dado.codigo)
+        return buscarProduto(raiz->esq, codigo);
+
+    return buscarProduto(raiz->dir, codigo);
+}
+void editarProduto(NO *raiz, int codigo) {
+    int opcao;
+    FILE *arquivo = fopen("produtos.txt", "w");
+    NO *produto = buscarProduto(raiz, codigo); 
+
+    if (produto == NULL) {
+        printf("Produto com codigo %d nao encontrado.\n", codigo);
+        return;
+    }
+
+    printf("Produto encontrado: %d (%s, Estoque: %d, Preco: %.2f)\n", 
+           produto->dado.codigo, produto->dado.nome, produto->dado.estoque, produto->dado.preco);
+
+    printf("O que voce deseja editar?\n");
+    printf("1. Nome\n");
+    printf("2. Estoque\n");
+    printf("3. Preco\n");
+    printf("4. Categoria\n");
+    printf("Escolha uma opcao: ");
+    
+    scanf("%d", &opcao);
+
+    switch(opcao) {
+        case 1:
+            printf("Informe o novo nome: ");
+            scanf("%s", produto->dado.nome);
+            printf("Nome alterado com sucesso!\n");
+            break;
+        case 2:
+            printf("Informe a nova quantidade em estoque: ");
+            scanf("%d", &produto->dado.estoque);
+            printf("Estoque alterado com sucesso!\n");
+            break;
+        case 3:
+            printf("Informe o novo preco: ");
+            scanf("%f", &produto->dado.preco);
+            printf("Preco alterado com sucesso!\n");
+            break;
+        case 4:
+            printf("Informe a nova categoria: ");
+            scanf("%s", produto->dado.categoria);
+            printf("Categoria alterada com sucesso!\n");
+            break;
+        default:
+            printf("Opcao invalida. Nenhuma alteracao realizada.\n");
+    }
+    
+
+	if (arquivo != NULL) {
+	    salvarProduto(arquivo, raiz);
+	    fclose(arquivo);
+	    printf("Produto editado e salvo com sucesso.\n");
+	} else {
+	    printf("Erro ao salvar alteracoes no arquivo.\n");
+	}
 }

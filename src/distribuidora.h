@@ -20,6 +20,7 @@ void logo();
 void MenuPrincipal();
 void MenuUsuario();
 void salvarProduto(FILE *arquivo, NO *no);
+void editarProduto(NO *raiz, int codigo);
 int altura(NO *n);
 int max(int a, int b);
 int fatorBalanceamento(NO *n);
@@ -29,4 +30,5 @@ NO* rotacaoEsquerda(NO *x);
 NO* cadastrarProduto(NO* no, Produto dado);
 NO* novoNoAVL(Produto dado);
 NO* carregarProdutos(FILE *arquivo);
+NO* buscarProduto(NO* raiz, int codigo);
 #endif
