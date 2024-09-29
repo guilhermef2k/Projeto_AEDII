@@ -47,7 +47,7 @@ int main() {
                                 case 2:
                                     printf("\nInforme o codigo do produto que deseja alterar:");
                                     scanf("%d", &cod);
-                                    editarProduto(raiz, cod); 
+                                    raiz = editarProduto(raiz, cod); 
                                     break;                                 
                                 case 3:
                                     mostrarProdutos(raiz, 0);
