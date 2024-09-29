@@ -10,7 +10,9 @@ int main() {
     Produto A;
     char user[50];
     int senha;
-    FILE *arquivo = fopen("produtos.txt", "r+");  
+    FILE *arquivo;
+
+    arquivo = fopen("produtos.txt", "r");  
 	if (arquivo != NULL) {
     	raiz = carregarProdutos(arquivo);  
     	fclose(arquivo);
@@ -40,6 +42,7 @@ int main() {
                                     printf("\nInforme o codigo, nome, preco, categoria do produto e quantidade em estoque.\n");
                                     scanf("%d %s %f %s %d", &A.codigo, A.nome, &A.preco, A.categoria, &A.estoque);
                                     raiz = cadastrarProduto(raiz, A);
+                                    printf("\nProduto cadastrado com sucesso!\n");
                                     break;
                                 case 2:
                                     printf("\nInforme o codigo do produto que deseja alterar:");
@@ -61,18 +64,20 @@ int main() {
                                     }
                                     break;
                                 case 5:
-                                    printf("\nInforme o codigo do produto que deseja excluir:");
+                                    printf("\nInforme o codigo do produto que deseja excluir: ");
                                     scanf("%d", &cod);
                                     produtoExcluir = buscarProduto(raiz, cod);
 								    if (produtoExcluir) {
-								        printf("Produto encontrado: %d (%s, Estoque: %d, Preco: %.2f)\n",
+								        printf("\nProduto encontrado: %d (%s, Estoque: %d, Preco: %.2f)\n",
 								               produtoExcluir->dado.codigo, produtoExcluir->dado.nome,
 								               produtoExcluir->dado.estoque, produtoExcluir->dado.preco);
 								        
 								        printf("Tem certeza que deseja excluir este produto? (1-Sim, 0-Nao)\n");
 								        scanf("%d", &confirmarExclusao);								
-								        if (confirmarExclusao == 1) 
-								            raiz = removerProduto(raiz, cod);								            
+								        if (confirmarExclusao == 1){ 
+								            raiz = removerProduto(raiz, cod);
+                                            printf("Produto excluido com sucesso!\n");
+                                        }								            
 								        else 
 								            printf("Exclusao cancelada.\n");								        
 								    } else {
@@ -89,8 +94,13 @@ int main() {
                                     printf("Logout realizado com sucesso.\n");
                                     break;            
                                 case 0:
-                                    printf("Saindo do programa...\n");
-                                    break;
+                                    arquivo = fopen("produtos.txt", "w");
+                                    if (arquivo != NULL) {
+	                                    salvarProduto(arquivo, raiz);
+	                                    fclose(arquivo);
+	                                    printf("Alteracoes salvas, saindo do programa...\n");
+                                    }
+                                    break;                                
                                 default:
                                     printf("Opcao invalida. Tente novamente.\n");
                             }
@@ -130,13 +140,12 @@ int main() {
                
                 break;  
             case 0:
-                printf("Saindo do programa...\n");
+                printf("Saindo do programa...");
                 break;
             default:
                 printf("Opcao invalida. Tente novamente.\n");
         }
 
     } while (opcao != 0);
-
     return 0;
 }

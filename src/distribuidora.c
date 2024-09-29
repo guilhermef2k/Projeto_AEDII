@@ -94,7 +94,6 @@ NO* novoNoAVL(Produto dado) {
 }
 
 NO* cadastrarProduto(NO* no, Produto dado) {
-    FILE *arquivo = fopen("produtos.txt", "w");
     int balanceamento;
     if (no == NULL)
         return novoNoAVL(dado);
@@ -121,14 +120,6 @@ NO* cadastrarProduto(NO* no, Produto dado) {
         no->dir = rotacaoDireita(no->dir);
         return rotacaoEsquerda(no);
     }
-    if (arquivo != NULL) {
-	    salvarProduto(arquivo, no);
-	    fclose(arquivo);
-	    printf("Produto cadastrado com sucesso.\n");
-	  } else {
-	    printf("Erro ao cadastrar produto.\n");
-	  }
-
     return no;  
 }
 
@@ -146,7 +137,7 @@ void salvarProduto(FILE *arquivo, NO *no) {
 
 NO* carregarProdutos(FILE *arquivo) {
     Produto dado;
-    NO *no = novoNoAVL(dado); 
+    NO *no; 
     char buffer[100];
 
     if (!fgets(buffer, sizeof(buffer), arquivo)) {
@@ -158,7 +149,7 @@ NO* carregarProdutos(FILE *arquivo) {
     }
 
     sscanf(buffer, "%d %s %d %f %s", &dado.codigo, dado.nome, &dado.estoque, &dado.preco, dado.categoria);
-
+    no = novoNoAVL(dado);
     no->esq = carregarProdutos(arquivo);
     no->dir = carregarProdutos(arquivo);
 
