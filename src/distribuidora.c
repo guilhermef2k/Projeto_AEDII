@@ -24,8 +24,7 @@ void MenuUsuario(){
   printf("5. Excluir produto\n");
   printf("6. Ordenar produtos por codigo\n");
   printf("7. Excluir usuario\n");
-  printf("8. Logout\n");
-  printf("0. Sair\n");
+  printf("0. Salvar e sair\n");
   printf("\nEscolha uma opcao: ");
 }
 
