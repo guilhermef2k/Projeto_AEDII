@@ -45,7 +45,7 @@ int main() {
                                     printf("\nProduto cadastrado com sucesso!\n");
                                     break;
                                 case 2:
-                                    printf("\nInforme o codigo do produto que deseja alterar:");
+                                    printf("\nInforme o codigo do produto que deseja alterar: ");
                                     scanf("%d", &cod);
                                     raiz = editarProduto(raiz, cod); 
                                     break;                                 
@@ -53,7 +53,7 @@ int main() {
                                     mostrarProdutos(raiz, 0);
                                     break;
                                 case 4:         
-                                    printf("\nInforme o codigo do produto que deseja buscar:");
+                                    printf("\nInforme o codigo do produto que deseja buscar: ");
                                     scanf("%d", &cod);
                                     produto = buscarProduto(raiz, cod);
                                     if (produto) {
@@ -89,10 +89,7 @@ int main() {
                                     break;
                                 case 7:
                                     
-                                    break;
-                                case 8:
-                                    printf("Logout realizado com sucesso.\n");
-                                    break;            
+                                    break;           
                                 case 0:
                                     arquivo = fopen("produtos.txt", "w");
                                     if (arquivo != NULL) {
@@ -126,14 +123,14 @@ int main() {
                 mostrarProdutos(raiz, 0);
                 break;
             case 4:
-                printf("\nInforme o codigo do produto que deseja buscar:");
+                printf("\nInforme o codigo do produto que deseja buscar: ");
                 scanf("%d", &cod);
                 produto = buscarProduto(raiz, cod);
                 if (produto) {
                     printf("Produto encontrado: %d (%s, Estoque: %d, Preco: %.2f)\n", 
                             produto->dado.codigo, produto->dado.nome, produto->dado.estoque, produto->dado.preco);
                 } else {
-                    printf("Produto não encontrado.\n");
+                    printf("Produto nao encontrado.\n");
                 }
                 break;
             case 5:
