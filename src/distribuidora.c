@@ -166,14 +166,13 @@ NO* buscarProduto(NO* raiz, int codigo) {
 
     return buscarProduto(raiz->dir, codigo);
 }
-void editarProduto(NO *raiz, int codigo) {
+NO* editarProduto(NO *raiz, int codigo) {
     int opcao;
-    FILE *arquivo = fopen("produtos.txt", "w");
     NO *produto = buscarProduto(raiz, codigo); 
 
     if (produto == NULL) {
         printf("Produto com codigo %d nao encontrado.\n", codigo);
-        return;
+        return 0;
     }
 
     printf("Produto encontrado: %d (%s, Estoque: %d, Preco: %.2f)\n", 
@@ -212,15 +211,7 @@ void editarProduto(NO *raiz, int codigo) {
         default:
             printf("Opcao invalida. Nenhuma alteracao realizada.\n");
     }
-    
-
-	if (arquivo != NULL) {
-	    salvarProduto(arquivo, raiz);
-	    fclose(arquivo);
-	    printf("Produto editado e salvo com sucesso.\n");
-	} else {
-	    printf("Erro ao salvar alteracoes no arquivo.\n");
-	}
+    return raiz;
 }
 
 NO* removerProduto(NO* raiz, int codigo) {
