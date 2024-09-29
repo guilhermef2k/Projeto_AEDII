@@ -226,7 +226,6 @@ void editarProduto(NO *raiz, int codigo) {
 NO* removerProduto(NO* raiz, int codigo) {
     int balance;
     NO* temp;
-    FILE *arquivo = fopen("produtos.txt", "w");
     if (raiz == NULL) {
         printf("Produto nao encontrado.\n");
         return raiz;
@@ -276,16 +275,6 @@ NO* removerProduto(NO* raiz, int codigo) {
         raiz->dir = rotacaoDireita(raiz->dir);
         return rotacaoEsquerda(raiz);
     }
-    
-	raiz = removerProduto(raiz, codigo);
-	if (arquivo != NULL) {
-	    salvarProduto(arquivo, raiz);
-	    fclose(arquivo);
-	    printf("Produto removido e alteraçõees salvas com sucesso.\n");
-	} else {
-	    printf("Erro ao salvar alterações no arquivo.\n");
-	}
-
     return raiz;
 }
 
