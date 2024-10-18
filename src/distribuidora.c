@@ -301,3 +301,71 @@ int mostrarProdutosPorCategoria(NO *raiz, char *categoria) {
 
     return encontrados;
 }
+
+void inicializarMinHeap(MinHeap *h) {
+    h->tamanho = 0;
+}
+
+void inserirMinHeap(MinHeap *h, Produto p) {
+    int i;
+    if (h->tamanho >= MAX_HEAP_SIZE) {
+        printf("Heap está cheio.\n");
+        return;
+    }
+    
+    i = h->tamanho;
+    h->heap[i] = p;
+    h->tamanho++;
+
+
+    while (i != 0 && h->heap[i].codigo < h->heap[(i - 1) / 2].codigo) {
+        Produto temp = h->heap[i];
+        h->heap[i] = h->heap[(i - 1) / 2];
+        h->heap[(i - 1) / 2] = temp;
+        i = (i - 1) / 2;
+    }
+}
+
+
+Produto removerMinHeap(MinHeap *h) {
+    int i = 0, menorFilho;
+    Produto raiz;
+    Produto temp;
+    Produto vazio = {0};
+    if (h->tamanho == 0) {
+        return vazio;
+    }
+
+    raiz = h->heap[0];
+    h->heap[0] = h->heap[h->tamanho - 1];
+    h->tamanho--;
+    while (2 * i + 1 < h->tamanho) {
+        menorFilho = 2 * i + 1;
+        if (menorFilho + 1 < h->tamanho && h->heap[menorFilho + 1].codigo < h->heap[menorFilho].codigo) {
+            menorFilho++;
+        }
+
+        if (h->heap[i].codigo <= h->heap[menorFilho].codigo) {
+            break;
+        }
+
+        temp = h->heap[i];
+        h->heap[i] = h->heap[menorFilho];
+        h->heap[menorFilho] = temp;
+
+        i = menorFilho;
+    }
+
+    return raiz;
+}
+
+
+void listarProdutosHeap(MinHeap *h) {
+    MinHeap copia = *h; 
+    Produto p;
+    printf("Produtos em ordem crescente de codigo:\n");
+    while (copia.tamanho > 0) {
+        p = removerMinHeap(&copia);
+        printf("Codigo: %d, Nome: %s, Preco: %.2f, Estoque: %d\n", p.codigo, p.nome, p.preco, p.estoque);
+    }
+}
