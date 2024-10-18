@@ -99,7 +99,9 @@ int main() {
                                     
                                     break;
                                 case 7:
-                                    
+                                    printf("\nInforme o nome de usuario para excluir: ");
+                                    scanf("%s", user);
+                                    excluirUsuario(user);
                                     break;           
                                 case 0:
                                     arquivo = fopen("produtos.txt", "w");
@@ -159,7 +161,7 @@ int main() {
                 if (arquivo2 != NULL) {
 	                salvarUsuario(arquivo2);
 	                fclose(arquivo2);
-	                printf("Alteracoes salvas, saindo do programa...\n");
+	                printf("Saindo do programa...\n");
                 }
                 break;
             default:
