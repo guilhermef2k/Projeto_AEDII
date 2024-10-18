@@ -89,3 +89,26 @@ Usuario* buscarUsuario(char* id) {
     }
     return NULL;
 }
+int excluirUsuario(char* id) {
+    unsigned int indice = h(id);
+    Usuario* atual = hash[indice];
+    Usuario* anterior = NULL;
+
+    while (atual != NULL) {
+        if (strcmp(atual->id, id) == 0) {  
+            if (anterior == NULL) {
+                hash[indice] = atual->prox;
+            } else {
+                anterior->prox = atual->prox;
+            }
+            free(atual); 
+            printf("\nUsuario '%s' excluido com sucesso!\n", id);
+            return 1; 
+        }
+        anterior = atual;
+        atual = atual->prox;
+    }
+
+    printf("Erro: Usuario '%s' nao encontrado.\n", id);
+    return 0;
+}
