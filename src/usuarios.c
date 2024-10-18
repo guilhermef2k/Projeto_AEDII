@@ -77,3 +77,15 @@ void carregarUsuarios(FILE *arquivo) {
     }
     fclose(arquivo);
 }
+Usuario* buscarUsuario(char* id) {
+    unsigned int indice = h(id);
+    Usuario* atual = hash[indice];
+
+    while (atual != NULL) {
+        if (strcmp(atual->id, id) == 0) {
+            return atual;
+        }
+        atual = atual->prox;
+    }
+    return NULL;
+}

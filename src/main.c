@@ -10,10 +10,12 @@ int main() {
     NO* produtoExcluir;
     Produto A;
     Usuario B;
+    Usuario* usuarioEncontrado;
     char user[50];
     char senha[50];
     FILE *arquivo;
     FILE *arquivo2;
+    initHash();
 
     arquivo = fopen("produtos.txt", "r");  
 	if (arquivo != NULL) {
@@ -38,9 +40,10 @@ int main() {
                     printf("\nInforme a senha:\n");
                     scanf("%s", senha);
 
-                    if ((strcmp(user, "usuario") == 0)) {
+                    usuarioEncontrado = buscarUsuario(user);
+                    if (usuarioEncontrado != NULL && strcmp(usuarioEncontrado->senha, (char*)senha) == 0) {
                         printf("\nLogin bem-sucedido!\n");
-                        tentativas = 0; 
+                        tentativas = 0;
 
                         do {
                             MenuUsuario();

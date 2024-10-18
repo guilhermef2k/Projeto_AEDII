@@ -15,5 +15,6 @@ Usuario *novoUsuario(char *id, char *email, char *senha);
 void cadastrarUsuario(char *id, char *email, char *senha);
 void salvarUsuario(FILE* arquivo);
 void carregarUsuarios(FILE *arquivo);
+Usuario* buscarUsuario(char* id);
 
 #endif
