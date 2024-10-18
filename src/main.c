@@ -4,7 +4,7 @@
 #include "usuarios.h"
 
 int main() {
-    int opcao, opcaoUsuario, confirmarExclusao, cod, tentativas = 0, maxTentativas = 3;
+    int opcao, opcaoUsuario, encontrados, confirmarExclusao, cod, tentativas = 0, maxTentativas = 3;
     NO *raiz = inicializar();
     NO* produto;
     NO* produtoExcluir;
@@ -13,6 +13,7 @@ int main() {
     Usuario* usuarioEncontrado;
     char user[50];
     char senha[50];
+    char categoria[50];
     FILE *arquivo;
     FILE *arquivo2;
     initHash();
@@ -99,10 +100,18 @@ int main() {
                                     
                                     break;
                                 case 7:
-                                    printf("\nInforme o nome de usuario para excluir: ");
+	                                printf("Informe a categoria que deseja buscar: ");
+	                                scanf("%s", categoria);
+	                                encontrados = mostrarProdutosPorCategoria(raiz, categoria);
+	                                    if (encontrados == 0) {
+		                                printf("Nenhum produto encontrado na categoria '%s'.\n", categoria);
+	                                }
+	                                break;
+                                case 8:
+                                    printf("Informe o nome de usuário para excluir: ");
                                     scanf("%s", user);
                                     excluirUsuario(user);
-                                    break;           
+                                    break;                
                                 case 0:
                                     arquivo = fopen("produtos.txt", "w");
                                     if (arquivo != NULL) {
@@ -154,7 +163,12 @@ int main() {
                 }
                 break;
             case 5:
-               
+                printf("Informe a categoria que deseja buscar: ");
+	            scanf("%s", categoria);
+	            encontrados = mostrarProdutosPorCategoria(raiz, categoria);
+	                if (encontrados == 0) {
+		            printf("Nenhum produto encontrado na categoria '%s'.\n", categoria);
+	                }
                 break;  
             case 0:
                 arquivo2 = fopen("usuarios.txt", "w");

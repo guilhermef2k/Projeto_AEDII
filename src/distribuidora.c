@@ -10,7 +10,7 @@ void MenuPrincipal() {
   printf("2. Cadastrar novo usuario\n");
   printf("3. Listar produtos\n");
   printf("4. Buscar produto\n");
-  printf("5. Mostrar por categoria\n");
+  printf("5. Mostrar produtos por categoria\n");
   printf("0. Sair\n");
   printf("\nEscolha uma opcao: ");
 }
@@ -23,7 +23,8 @@ void MenuUsuario(){
   printf("4. Buscar produto\n");
   printf("5. Excluir produto\n");
   printf("6. Ordenar produtos por codigo\n");
-  printf("7. Excluir usuario\n");
+  printf("7. Mostrar produtos por categoria\n");
+  printf("8. Excluir usuario\n");
   printf("0. Salvar e sair\n");
   printf("\nEscolha uma opcao: ");
 }
@@ -281,4 +282,22 @@ void mostrarProdutos(NO *raiz, int nivel) {
     printf("%d (%s, Estoque: %d, Preco: %.2f)\n", raiz->dado.codigo, raiz->dado.nome, raiz->dado.estoque, raiz->dado.preco);
 
     mostrarProdutos(raiz->esq, nivel + 1);
+}
+
+int mostrarProdutosPorCategoria(NO *raiz, char *categoria) {
+    int encontrados = 0;
+
+    if (raiz == NULL) {
+        return 0;
+    }
+
+    if (strcmp(raiz->dado.categoria, categoria) == 0) {
+        printf("%d (%s, Estoque: %d, Preco: %.2f)\n", raiz->dado.codigo, raiz->dado.nome, raiz->dado.estoque, raiz->dado.preco);
+        encontrados = 1;
+    }
+
+    encontrados += mostrarProdutosPorCategoria(raiz->esq, categoria);
+    encontrados += mostrarProdutosPorCategoria(raiz->dir, categoria);
+
+    return encontrados;
 }
