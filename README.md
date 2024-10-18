@@ -51,19 +51,19 @@ Ponteiro sem ponta é o nome dado ao projeto que visa a criação, em linguagem 
 
 Básicas:
 
-- [x] Login (id: usuario, senha: 123) 
-- [ ] Cadastrar novo usuário 
+- [x] Login 
+- [x] Cadastrar novo usuário 
 - [x] Consultar estoque
 - [x] Buscar produtos
-- [ ] Mostrar produtos por categoria
+- [x] Mostrar produtos por categoria
 
 Após cadastro e login:
 
 - [x] Cadastrar novo produto
 - [x] Editar produto
 - [x] Excluir produto
-- [ ] Excluir usuário
-- [ ] Ordenar produtos por código
+- [x] Excluir usuário
+- [x] Ordenar produtos por código
 
 ## Execução
 
