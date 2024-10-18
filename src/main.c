@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h> 
 #include "distribuidora.h"
+#include "usuarios.h"
 
 int main() {
     int opcao, opcaoUsuario, confirmarExclusao, cod, tentativas = 0, maxTentativas = 3;
@@ -8,14 +9,21 @@ int main() {
     NO* produto;
     NO* produtoExcluir;
     Produto A;
+    Usuario B;
     char user[50];
-    int senha;
+    char senha[50];
     FILE *arquivo;
+    FILE *arquivo2;
 
     arquivo = fopen("produtos.txt", "r");  
 	if (arquivo != NULL) {
     	raiz = carregarProdutos(arquivo);  
     	fclose(arquivo);
+	}
+    arquivo2 = fopen("usuarios.txt", "r");  
+	if (arquivo2 != NULL) {
+    	carregarUsuarios(arquivo2);  
+    	fclose(arquivo2);
 	}
 
     do {
@@ -28,9 +36,9 @@ int main() {
                     printf("\nInforme o seu ID:\n");
                     scanf("%s", user);
                     printf("\nInforme a senha:\n");
-                    scanf("%d", &senha);
+                    scanf("%s", senha);
 
-                    if ((strcmp(user, "usuario") == 0) && (senha == 123)) {
+                    if ((strcmp(user, "usuario") == 0)) {
                         printf("\nLogin bem-sucedido!\n");
                         tentativas = 0; 
 
@@ -117,7 +125,14 @@ int main() {
                 break;
 
             case 2:
-
+                printf("Nome de usuario: ");
+                scanf("%s", B.id);
+                printf("Email: ");
+                scanf("%s", B.email);
+                printf("Senha: ");
+                scanf("%s", B.senha);
+                cadastrarUsuario(B.id, B.email, B.senha);
+                printf("\nUsuario cadastrado com sucesso!\n");
                 break;
             case 3:
                 mostrarProdutos(raiz, 0);
@@ -137,7 +152,12 @@ int main() {
                
                 break;  
             case 0:
-                printf("Saindo do programa...");
+                arquivo2 = fopen("usuarios.txt", "w");
+                if (arquivo2 != NULL) {
+	                salvarUsuario(arquivo2);
+	                fclose(arquivo2);
+	                printf("Alteracoes salvas, saindo do programa...\n");
+                }
                 break;
             default:
                 printf("Opcao invalida. Tente novamente.\n");
