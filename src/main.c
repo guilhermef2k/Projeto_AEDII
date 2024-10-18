@@ -16,6 +16,8 @@ int main() {
     char categoria[50];
     FILE *arquivo;
     FILE *arquivo2;
+    MinHeap heap;
+	inicializarMinHeap(&heap);
     initHash();
 
     arquivo = fopen("produtos.txt", "r");  
@@ -54,6 +56,7 @@ int main() {
                                     printf("\nInforme o codigo, nome, preco, categoria do produto e quantidade em estoque.\n");
                                     scanf("%d %s %f %s %d", &A.codigo, A.nome, &A.preco, A.categoria, &A.estoque);
                                     raiz = cadastrarProduto(raiz, A);
+                                    inserirMinHeap(&heap, A);
                                     printf("\nProduto cadastrado com sucesso!\n");
                                     break;
                                 case 2:
@@ -97,7 +100,7 @@ int main() {
 								    }
                                     break;
                                 case 6:
-                                    
+                                    listarProdutosHeap(&heap);
                                     break;
                                 case 7:
 	                                printf("Informe a categoria que deseja buscar: ");
