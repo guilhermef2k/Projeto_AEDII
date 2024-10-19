@@ -97,7 +97,9 @@ Para **compilar** e **executar** o sistema basta colar os comandos a seguir um p
 
 `gcc -ansi -Wall -pedantic-errors -g -c distribuidora.c`
 
-`gcc main.o distribuidora.o -lm -o Projeto`
+`gcc -ansi -Wall -pedantic-errors -g -c usuarios.c`
+
+`gcc main.o distribuidora.o usuarios.o -lm -o Projeto`
 
 Após isso, será gerado na pasta do projeto um executável que pode ser aberto clicando duas vezes com o botão esquerdo ou executando o comando `.\Projeto` no terminal.
 
