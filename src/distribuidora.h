@@ -44,4 +44,6 @@ void inicializarMinHeap(MinHeap *h);
 void inserirMinHeap(MinHeap *h, Produto p);
 Produto removerMinHeap(MinHeap *h);
 void listarProdutosHeap(MinHeap *h);
+void ordenarProdutosPorCodigo(NO **raiz, MinHeap *heap);
+void inserirProdutosNoHeap(NO *raiz, MinHeap *heap);
 #endif
