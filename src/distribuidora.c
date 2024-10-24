@@ -25,7 +25,8 @@ void MenuUsuario(){
   printf("6. Ordenar produtos por codigo\n");
   printf("7. Mostrar produtos por categoria\n");
   printf("8. Excluir usuario\n");
-  printf("0. Salvar e sair\n");
+  printf("9. Salvar alteracoes\n");
+  printf("0. Sair\n");
   printf("\nEscolha uma opcao: ");
 }
 
@@ -312,7 +313,7 @@ void inserirMinHeap(MinHeap *h, Produto p) {
         printf("Heap está cheio.\n");
         return;
     }
-    
+
     i = h->tamanho;
     h->heap[i] = p;
     h->tamanho++;
@@ -339,6 +340,7 @@ Produto removerMinHeap(MinHeap *h) {
     raiz = h->heap[0];
     h->heap[0] = h->heap[h->tamanho - 1];
     h->tamanho--;
+
     while (2 * i + 1 < h->tamanho) {
         menorFilho = 2 * i + 1;
         if (menorFilho + 1 < h->tamanho && h->heap[menorFilho + 1].codigo < h->heap[menorFilho].codigo) {
@@ -361,11 +363,37 @@ Produto removerMinHeap(MinHeap *h) {
 
 
 void listarProdutosHeap(MinHeap *h) {
-    MinHeap copia = *h; 
+    MinHeap copia = *h;
     Produto p;
+
     printf("Produtos em ordem crescente de codigo:\n");
     while (copia.tamanho > 0) {
         p = removerMinHeap(&copia);
         printf("Codigo: %d, Nome: %s, Preco: %.2f, Estoque: %d\n", p.codigo, p.nome, p.preco, p.estoque);
     }
+}
+
+void ordenarProdutosPorCodigo(NO **raiz, MinHeap *heap) {
+    FILE *arquivo = fopen("produtos.txt", "r");
+    if (arquivo != NULL) {
+        *raiz = carregarProdutos(arquivo);
+        fclose(arquivo);
+    } else {
+        printf("Erro ao abrir o arquivo de produtos.\n");
+    }
+
+    inicializarMinHeap(heap);
+
+    inserirProdutosNoHeap(*raiz, heap);
+
+    listarProdutosHeap(heap);
+}
+
+void inserirProdutosNoHeap(NO *raiz, MinHeap *heap) {
+    if (raiz == NULL) return;
+
+    inserirMinHeap(heap, raiz->dado); 
+
+    inserirProdutosNoHeap(raiz->esq, heap);
+    inserirProdutosNoHeap(raiz->dir, heap);
 }

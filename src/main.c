@@ -53,8 +53,16 @@ int main() {
                             scanf("%d", &opcaoUsuario);
                             switch (opcaoUsuario) {
                                 case 1:
-                                    printf("\nInforme o codigo, nome, preco, categoria do produto e quantidade em estoque.\n");
-                                    scanf("%d %s %f %s %d", &A.codigo, A.nome, &A.preco, A.categoria, &A.estoque);
+                                    printf("\nInforme o codigo: \n");
+                                    scanf("%d", &A.codigo);
+                                    printf("\nInforme o nome: \n");
+                                    scanf("%s", A.nome);
+                                    printf("\nInforme o preco: \n");
+                                    scanf("%f", &A.preco);
+                                    printf("\nInforme a categoria do produto: \n");
+                                    scanf("%s", A.categoria);
+                                    printf("\nInforme a quantidade em estoque: \n");
+                                    scanf("%d", &A.estoque);
                                     raiz = cadastrarProduto(raiz, A);
                                     inserirMinHeap(&heap, A);
                                     printf("\nProduto cadastrado com sucesso!\n");
@@ -100,7 +108,7 @@ int main() {
 								    }
                                     break;
                                 case 6:
-                                    listarProdutosHeap(&heap);
+                                    ordenarProdutosPorCodigo(&raiz, &heap);
                                     break;
                                 case 7:
 	                                printf("Informe a categoria que deseja buscar: ");
@@ -111,22 +119,25 @@ int main() {
 	                                }
 	                                break;
                                 case 8:
-                                    printf("Informe o nome de usuário para excluir: ");
+                                    printf("Informe o nome de usuario para excluir: ");
                                     scanf("%s", user);
                                     excluirUsuario(user);
-                                    break;                
-                                case 0:
+                                    break; 
+                                case 9:
                                     arquivo = fopen("produtos.txt", "w");
                                     if (arquivo != NULL) {
 	                                    salvarProduto(arquivo, raiz);
 	                                    fclose(arquivo);
-	                                    printf("Alteracoes salvas, saindo do programa...\n");
+	                                    printf("Alteracoes salvas.\n");
                                     }
+                                break;                
+                                case 0:                 
+	                                    printf("Saindo do programa...\n");
                                     break;                                
                                 default:
                                     printf("Opcao invalida. Tente novamente.\n");
                             }
-                        } while (opcaoUsuario != 0 && opcaoUsuario != 8);
+                        } while (opcaoUsuario != 0);
 
                     } else {
                         tentativas++;
