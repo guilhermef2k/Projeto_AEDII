@@ -273,6 +273,9 @@ NO* removerProduto(NO* raiz, int codigo) {
 void mostrarProdutos(NO *raiz, int nivel) {
     int i;
     if (raiz == NULL) {
+        if(nivel == 0){
+            printf("\nNao ha produtos cadastrados.\n");
+        }
         return;
     }
 
@@ -365,7 +368,7 @@ Produto removerMinHeap(MinHeap *h) {
 void listarProdutosHeap(MinHeap *h) {
     MinHeap copia = *h;
     Produto p;
-
+    
     printf("Produtos em ordem crescente de codigo:\n");
     while (copia.tamanho > 0) {
         p = removerMinHeap(&copia);
@@ -386,6 +389,11 @@ void ordenarProdutosPorCodigo(NO **raiz, MinHeap *heap) {
 
     inserirProdutosNoHeap(*raiz, heap);
 
+    if (heap->tamanho == 0) {
+        printf("\nNao ha produtos cadastrados.\n");
+        return;
+    }
+
     listarProdutosHeap(heap);
 }
 
@@ -396,4 +404,30 @@ void inserirProdutosNoHeap(NO *raiz, MinHeap *heap) {
 
     inserirProdutosNoHeap(raiz->esq, heap);
     inserirProdutosNoHeap(raiz->dir, heap);
+}
+int lerInteiro() {
+    int valor;
+    while (1) {
+        if (scanf("%d", &valor) == 1) {
+            while (getchar() != '\n'); 
+            return valor;
+        } else {
+            printf("Entrada invalida. Tente novamente.\n");
+            printf("Informe um valor inteiro:\n");
+            while (getchar() != '\n'); 
+        }
+    }
+}
+float lerFloat() {
+    float valor;
+    while (1) {
+        if (scanf("%f", &valor) == 1) {
+            while (getchar() != '\n');
+            return valor;
+        } else {
+            printf("Entrada invalida. Tente novamente.\n");
+            printf("Informe o preco: ");
+            while (getchar() != '\n');
+        }
+    }
 }

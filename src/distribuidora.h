@@ -22,7 +22,6 @@ typedef struct {
     int tamanho;
 } MinHeap;
 
-void logo();
 void MenuPrincipal();
 void MenuUsuario();
 void salvarProduto(FILE *arquivo, NO *no);
@@ -46,4 +45,6 @@ Produto removerMinHeap(MinHeap *h);
 void listarProdutosHeap(MinHeap *h);
 void ordenarProdutosPorCodigo(NO **raiz, MinHeap *heap);
 void inserirProdutosNoHeap(NO *raiz, MinHeap *heap);
+float lerFloat();
+int lerInteiro();
 #endif
