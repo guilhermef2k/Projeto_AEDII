@@ -368,7 +368,7 @@ Produto removerMinHeap(MinHeap *h) {
 void listarProdutosHeap(MinHeap *h) {
     MinHeap copia = *h;
     Produto p;
-
+    
     printf("Produtos em ordem crescente de codigo:\n");
     while (copia.tamanho > 0) {
         p = removerMinHeap(&copia);
@@ -388,6 +388,11 @@ void ordenarProdutosPorCodigo(NO **raiz, MinHeap *heap) {
     inicializarMinHeap(heap);
 
     inserirProdutosNoHeap(*raiz, heap);
+
+    if (heap->tamanho == 0) {
+        printf("\nNao ha produtos cadastrados.\n");
+        return;
+    }
 
     listarProdutosHeap(heap);
 }
