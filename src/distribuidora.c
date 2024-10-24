@@ -273,6 +273,9 @@ NO* removerProduto(NO* raiz, int codigo) {
 void mostrarProdutos(NO *raiz, int nivel) {
     int i;
     if (raiz == NULL) {
+        if(nivel == 0){
+            printf("\nNao ha produtos cadastrados.\n");
+        }
         return;
     }
 

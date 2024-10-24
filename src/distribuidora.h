@@ -22,7 +22,6 @@ typedef struct {
     int tamanho;
 } MinHeap;
 
-void logo();
 void MenuPrincipal();
 void MenuUsuario();
 void salvarProduto(FILE *arquivo, NO *no);
