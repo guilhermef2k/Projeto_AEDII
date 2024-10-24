@@ -400,3 +400,29 @@ void inserirProdutosNoHeap(NO *raiz, MinHeap *heap) {
     inserirProdutosNoHeap(raiz->esq, heap);
     inserirProdutosNoHeap(raiz->dir, heap);
 }
+int lerInteiro() {
+    int valor;
+    while (1) {
+        if (scanf("%d", &valor) == 1) {
+            while (getchar() != '\n'); 
+            return valor;
+        } else {
+            printf("Entrada invalida. Tente novamente.\n");
+            printf("Informe um valor inteiro:\n");
+            while (getchar() != '\n'); 
+        }
+    }
+}
+float lerFloat() {
+    float valor;
+    while (1) {
+        if (scanf("%f", &valor) == 1) {
+            while (getchar() != '\n');
+            return valor;
+        } else {
+            printf("Entrada invalida. Tente novamente.\n");
+            printf("Informe o preco: ");
+            while (getchar() != '\n');
+        }
+    }
+}

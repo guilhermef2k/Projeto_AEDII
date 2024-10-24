@@ -54,15 +54,15 @@ int main() {
                             switch (opcaoUsuario) {
                                 case 1:
                                     printf("\nInforme o codigo: \n");
-                                    scanf("%d", &A.codigo);
+                                    A.codigo = lerInteiro();
                                     printf("\nInforme o nome: \n");
                                     scanf("%s", A.nome);
                                     printf("\nInforme o preco: \n");
-                                    scanf("%f", &A.preco);
+                                    A.preco = lerFloat();
                                     printf("\nInforme a categoria do produto: \n");
                                     scanf("%s", A.categoria);
                                     printf("\nInforme a quantidade em estoque: \n");
-                                    scanf("%d", &A.estoque);
+                                    A.estoque = lerInteiro();
                                     raiz = cadastrarProduto(raiz, A);
                                     inserirMinHeap(&heap, A);
                                     printf("\nProduto cadastrado com sucesso!\n");

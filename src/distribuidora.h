@@ -45,4 +45,6 @@ Produto removerMinHeap(MinHeap *h);
 void listarProdutosHeap(MinHeap *h);
 void ordenarProdutosPorCodigo(NO **raiz, MinHeap *heap);
 void inserirProdutosNoHeap(NO *raiz, MinHeap *heap);
+float lerFloat();
+int lerInteiro();
 #endif
